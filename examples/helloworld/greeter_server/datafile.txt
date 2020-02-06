@@ -1,0 +1,6 @@
+foo:bar
+key:value
+Elephant:Tortoise
+Lion:Tiger
+Cat:Dog
+Gorilla:Chimpanzee
