@@ -98,6 +98,14 @@ func (s *server) GetVal(ctx context.Context, in *pb.ValReadRequest) (*pb.ValRead
 	return &pb.ValReadReply{Val: "The value is " + bar}, nil
 }
 
+
+func (s *server) SetVal(ctx context.Context, in *pb.ValWriteRequest) (*pb.ValWriteReply, error) {
+	key := in.GetKey()
+	val := in.GetVal()
+	m.Set(key, val)
+	return &pb.ValWriteReply{Message: "True"}, nil
+}
+
 func main() {
 
 	// m["Default"] = "Just for check"

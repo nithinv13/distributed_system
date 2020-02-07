@@ -66,9 +66,18 @@ func main() {
 	}
 	log.Printf("Greeting: %s", r.GetMessage())
 
-	reply, err1 := c.GetVal(ctx, &pb.ValReadRequest{Key: key})
+	readreply, err1 := c.GetVal(ctx, &pb.ValReadRequest{Key: key})
 	if err1 != nil {
 		    log.Fatalf("Could not get the value corresponding to the key: %v", err1)
 	}
-	log.Printf("The value is: %s", reply.GetVal())
+	log.Printf("The value is: %s", readreply.GetVal())
+
+	writereply, err := c.SetVal(ctx, &pb.ValWriteRequest{Key: "tiger", Val: "lion"})
+	log.Printf("SetVal reply: %s", writereply.GetMessage())
+
+	readreply, err1 = c.GetVal(ctx, &pb.ValReadRequest{Key: "tiger"})
+	if err1 != nil {
+		    log.Fatalf("Could not get the value corresponding to the key: %v", err1)
+	}
+	log.Printf("The value is: %s", readreply.GetVal())
 }
